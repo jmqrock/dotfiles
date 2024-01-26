@@ -11,4 +11,10 @@ return {
   },
 
   { "numToStr/Comment.nvim" },
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      render = 'compact'
+    }
+  },
 }
