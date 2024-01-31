@@ -38,10 +38,14 @@ local keys = {
   { key = 'F4', mods = 'NONE', action = act.ShowTabNavigator },
   { key = 'F12', mods = 'NONE', action = act.ShowDebugOverlay },
   -- { key = 'f', mods = mod.SUPER, action = act.Search('CurrentSelectionOrEmptyString') },
-  { key = 'f', mods = mod.SUPER, action = act.Multiple({
-    act.Search({CaseSensitiveString = ''}),
-    act.CopyMode('ClearPattern'),
-  }) },
+  {
+    key = 'f',
+    mods = mod.SUPER,
+    action = act.Multiple({
+      act.Search({ CaseSensitiveString = '' }),
+      act.CopyMode('ClearPattern'),
+    }),
+  },
 
   -- copy/paste --
   { key = 'c', mods = mod.SUPER, action = act.CopyTo('Clipboard') },
@@ -112,6 +116,7 @@ local keys = {
   -- panes: zoom+close pane
   { key = 'z', mods = mod.SUPER_REV, action = act.TogglePaneZoomState },
   { key = 'w', mods = mod.SUPER, action = act.CloseCurrentPane({ confirm = true }) },
+  { key = 's', mods = mod.SUPER_REV, action = act.PaneSelect},
 
   -- panes: navigation
   { key = 'k', mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Up') },
