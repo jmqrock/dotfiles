@@ -75,7 +75,7 @@ M.push = function(bg, fg, attribute, text)
    table.insert(M.cells, { Text = text })
 end
 
-function M.apply_to_config(config)
+function M.apply(config)
    config.enable_tab_bar = true
    config.use_fancy_tab_bar = false
    config.tab_bar_at_bottom = true

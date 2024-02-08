@@ -3,7 +3,7 @@ local wezterm = require('wezterm')
 local M = {}
 local font_size = 16
 
-function M.apply_to_config(config)
+function M.apply(config)
   config.dpi = 114
   config.font = wezterm.font_with_fallback({
     {

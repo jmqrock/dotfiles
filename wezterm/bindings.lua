@@ -145,6 +145,16 @@ local keys = {
       timemout_miliseconds = 1000,
     }),
   },
+  -- move tabs
+  {
+    key = 't',
+    mods = 'LEADER',
+    action = act.ActivateKeyTable({
+      name = 'resize_pane',
+      one_shot = false,
+      timemout_miliseconds = 1000,
+    }),
+  },
 }
 
 local key_tables = {
@@ -174,7 +184,7 @@ local mouse_bindings = {
   },
 }
 
-function M.apply_to_config(config)
+function M.apply(config)
   config.disable_default_key_bindings = true
   config.leader = { key = 'b', mods = 'CTRL' }
   config.keys = keys
