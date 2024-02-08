@@ -18,7 +18,7 @@ for line in io.lines(home .. '/.zshrc') do
   -- to find my password
   if string.find(line, 'KARAS_PASSWORD') then
     local _, pwd = line:match('([^=]+)=([^=]+)')
-    my_pwd = pwd:gsub('"', '') .. '\n'
+    my_pwd = pwd:gsub('"', ''):gsub("'", '') .. '\n'
   end
 end
 
@@ -116,7 +116,7 @@ local keys = {
   -- panes: zoom+close pane
   { key = 'z', mods = mod.SUPER_REV, action = act.TogglePaneZoomState },
   { key = 'w', mods = mod.SUPER, action = act.CloseCurrentPane({ confirm = true }) },
-  { key = 's', mods = mod.SUPER_REV, action = act.PaneSelect},
+  { key = 's', mods = mod.SUPER_REV, action = act.PaneSelect },
 
   -- panes: navigation
   { key = 'k', mods = mod.SUPER_REV, action = act.ActivatePaneDirection('Up') },
