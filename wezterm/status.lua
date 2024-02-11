@@ -2,6 +2,8 @@
 --- @alias battery { state: battery_state, state_of_charge: number }
 --
 local wezterm = require('wezterm')
+local icons = wezterm.nerdfonts
+local hostname = wezterm.hostname()
 
 local M = {}
 
@@ -9,12 +11,12 @@ local M = {}
 --- @return string
 local function render_battery(battery)
   --- @type table<string, string>
-  local icons = wezterm.nerdfonts
-  local hostname = wezterm.hostname()
+
   if string.find(hostname, 'Studio') ~= nil then
     return wezterm.format({
       { Foreground = { AnsiColor = 'Green' } },
-      { Text = icons['md_desktop_mac'] },
+      -- { Text = icons['md_desktop_mac'] },
+      { Text = icons['cod_plug'] },
     })
   end
 
@@ -22,7 +24,7 @@ local function render_battery(battery)
   local formatted_percent = string.format('%.0f%%', percent * 100)
 
   local get_icon = function()
-    local prefix = 'mdi_battery'
+    local prefix = 'md_battery'
     if battery.state == 'Charging' then
       return icons[prefix .. '_charging']
     end
@@ -30,7 +32,7 @@ local function render_battery(battery)
     local icon_name
 
     if percent == 1 then
-      icon_name = prefix
+      icon_name = 'md_battery_charging_100'
     else
       local suffix = math.max(1, math.ceil(percent * 10)) .. '0'
       icon_name = prefix .. '_' .. suffix
@@ -46,15 +48,26 @@ local function render_battery(battery)
   return string.format('%s %s', get_icon(), formatted_percent)
 end
 
+local function get_mac_icon()
+  local mac_icon = icons['md_laptop']
+  if string.find(hostname, 'Studio') ~= nil then
+    mac_icon = icons['md_desktop_mac']
+  end
+  return wezterm.format({
+    { Foreground = { AnsiColor = 'Green' } },
+    { Text = mac_icon },
+  })
+end
+
 local function update_right_status(window)
-  -- "Wed Mar 3 08:14"
+  -- "Mar 3[Wed] 08:14"
   --- @type string
-  local date = wezterm.strftime('%a %b %-d %H:%M')
+  local date = wezterm.strftime('%b %-d[%a] %H:%M')
 
   --- @type string
   local tilde = wezterm.format({
     { Foreground = { AnsiColor = 'Fuchsia' } },
-    { Text = '~' },
+    { Text = '|' },
   })
 
   --- @type string
@@ -64,9 +77,8 @@ local function update_right_status(window)
     battery = render_battery(b)
   end
 
-  local status = string.format('%s %s %s ', battery, tilde, date)
   window:set_right_status(wezterm.format({
-    { Text = status },
+    { Text = string.format('%s %s%s %s%s ', battery, tilde, date, tilde, get_mac_icon()) },
   }))
 end
 
