@@ -1,9 +1,13 @@
+gui:
+  nerdFontsVersion: '2'
+  splitDiff: 'always'
+  sidePanelWidth: 0.2
 git:
   paging:
-    colorArg: always
+    colorArg: 'always'
     pager: delta --dark --paging=never
 os:
-  edit: 'vim {{filename}}'
-  editAtLine: 'vim +{{line}} -- {{filename}}'
+  edit: 'nvim {{filename}}'
+  editAtLine: 'nvim +{{line}} -- {{filename}}'
   editInTerminal: true
-  openDirInEditor: 'vim {{dir}}'
+  openDirInEditor: 'nvim {{dir}}'
