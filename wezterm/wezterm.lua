@@ -25,7 +25,8 @@ config.animation_fps = 60
 config.max_fps = 60
 config.front_end = 'WebGpu'
 config.webgpu_power_preference = 'HighPerformance'
-config.color_scheme = 'Tokyo Night Storm'
+-- config.color_scheme = 'Tokyo Night Storm'
+config.color_scheme = 'darkmoss (base16)' 
 config.automatically_reload_config = false
 
 -- window
