@@ -1,3 +1,4 @@
+-- local os = require('os')
 local wezterm = require('wezterm')
 local icons = wezterm.nerdfonts
 local M = {}
@@ -39,6 +40,14 @@ M.colors = {
   },
 }
 
+local function parse_remote_machine(process_name, title_str)
+  if process_name == 'ssh' and title_str and string.find(title_str, ':') ~= nil then
+    local _, cur_path = title_str:match("([^:]+) : (.+)")
+    return cur_path or title_str
+  end
+  return title_str
+end
+
 M.set_process_name = function(s)
   local a = string.gsub(s, '(.*[/\\])(.*)', '%2')
   return a:gsub('%.exe$', '')
@@ -48,10 +57,12 @@ M.set_title = function(process_name, base_title, max_width, inset)
   local title
   inset = inset or 6
 
+  local parsed_title = parse_remote_machine(process_name, base_title)
+
   if process_name:len() > 0 then
-    title = process_name .. '⏽' .. base_title
+    title = process_name .. '⏽' .. parsed_title
   else
-    title = base_title
+    title = parsed_title
   end
 
   if title:len() > max_width - inset then
@@ -114,7 +125,7 @@ function M.apply(config)
     return false
   end)
 
-  wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+  wezterm.on('format-tab-title', function(tab, _, _, _, hover, max_width)
     M.cells = {}
 
     local bg

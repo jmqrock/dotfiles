@@ -8,6 +8,20 @@ local tilde = ''
 
 local M = {}
 
+local function parse_remote_machine(active_pane)
+  local process_name = active_pane:get_foreground_process_name() or ''
+  local base_title = active_pane:get_title() or ''
+  if string.find(process_name, 'ssh') ~= nil and string.find(base_title, ':') ~= nil then
+    local hostname, _ = base_title:match('([^:]+) : (.+)')
+    if hostname then
+      return hostname:match('([^%.]+)')
+    else
+      return hostname
+    end
+  end
+  return 'Local'
+end
+
 local function apply_fmt(fg, bg, appled_str)
   local fmt_array = {}
   if fg then
@@ -72,7 +86,8 @@ local function get_mac_icon()
   )
 end
 
-local function update_right_status(window)
+local function update_right_status(window, active_pane)
+  print(parse_remote_machine(active_pane))
   -- "Mar 3[Wed] 08:14"
   --- @type string
   local date = string.format(
@@ -100,7 +115,7 @@ local function update_right_status(window)
 end
 
 function M.apply(_)
-  wezterm.on('update-right-status', update_right_status)
+  wezterm.on('update-status', update_right_status)
 end
 
 return M
