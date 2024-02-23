@@ -2,6 +2,7 @@
 --- @alias battery { state: battery_state, state_of_charge: number }
 --
 local wezterm = require('wezterm')
+local utils = require('utils')
 local icons = wezterm.nerdfonts
 local is_studio = string.find(wezterm.hostname(), 'Studio') ~= nil
 local tilde = ''
@@ -9,17 +10,13 @@ local tilde = ''
 local M = {}
 
 local function parse_remote_machine(active_pane)
-  local process_name = active_pane:get_foreground_process_name() or ''
-  local base_title = active_pane:get_title() or ''
-  if string.find(process_name, 'ssh') ~= nil and string.find(base_title, ':') ~= nil then
-    local hostname, _ = base_title:match('([^:]+) : (.+)')
-    if hostname then
-      return hostname:match('([^%.]+)')
-    else
-      return hostname
-    end
+  local process_name = utils.parse_process_name(active_pane:get_foreground_process_name())
+  local hostname, _ = utils.parse_host_path_from_title(process_name, active_pane:get_title())
+  local output_str = icons['md_alpha_k_box_outline']
+  if hostname then
+    output_str = string.format('%s %s', icons['cod_radio_tower'], hostname:match('^([^.]+)'))
   end
-  return 'Local'
+  return string.format('%s%s ', icons['md_power_on'], output_str)
 end
 
 local function apply_fmt(fg, bg, appled_str)
@@ -87,7 +84,8 @@ local function get_mac_icon()
 end
 
 local function update_right_status(window, active_pane)
-  print(parse_remote_machine(active_pane))
+  local hostname = apply_fmt('White', nil, parse_remote_machine(active_pane))
+
   -- "Mar 3[Wed] 08:14"
   --- @type string
   local date = string.format(
@@ -110,7 +108,7 @@ local function update_right_status(window, active_pane)
   end
 
   window:set_right_status(wezterm.format({
-    { Text = string.format('%s%s%s', battery, date, get_mac_icon()) },
+    { Text = string.format('%s%s%s%s', hostname, battery, date, get_mac_icon()) },
   }))
 end
 
