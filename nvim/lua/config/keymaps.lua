@@ -6,7 +6,7 @@ vim.keymap.set({ "n", "x" }, "cp", '"+y', { nowait = true, noremap = true, desc 
 
 vim.keymap.set({ "n" }, "gl", vim.diagnostic.open_float, { nowait = true, desc = "To show diagnostic info" })
 
-vim.keymap.set({"n"}, "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+vim.keymap.set({"n"},  "<leader>fG", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 
 vim.keymap.set(
   { "n", "x" },

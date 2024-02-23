@@ -49,10 +49,19 @@ end
 M.set_title = function(process_name, base_title, max_width, inset)
   local title
   inset = inset or 6
-  local _, working_path = utils.parse_host_path_from_title(process_name, base_title)
+  local hostname, working_path = utils.parse_host_path_from_title(process_name, base_title)
+  print(string.format("title:%s, host: %s, path:%s", base_title, hostname, working_path))
 
   if process_name:len() > 0 then
-    title = process_name .. icons['md_power_on'] .. working_path
+    if process_name == 'ssh' and hostname then
+      title = hostname:match('^([^.]+)') .. icons['md_power_on'] .. working_path
+    else
+      if process_name == working_path then
+        title = process_name
+      else
+        title = process_name .. icons['md_power_on'] .. working_path
+      end
+    end
   else
     title = working_path
   end
@@ -125,7 +134,6 @@ function M.apply(config)
     local process_name = utils.parse_process_name(tab.active_pane.foreground_process_name)
     local is_admin = M.check_if_admin(tab.active_pane.title)
     local title = M.set_title(process_name, tab.active_pane.title, max_width, (is_admin and 8))
-    print(tab.active_pane.title)
 
     if tab.is_active then
       bg = M.colors.is_active.bg
