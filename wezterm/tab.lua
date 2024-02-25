@@ -50,7 +50,6 @@ M.set_title = function(process_name, base_title, max_width, inset)
   local title
   inset = inset or 6
   local hostname, working_path = utils.parse_host_path_from_title(process_name, base_title)
-  print(string.format("title:%s, host: %s, path:%s", base_title, hostname, working_path))
 
   if process_name:len() > 0 then
     if process_name == 'ssh' and hostname then

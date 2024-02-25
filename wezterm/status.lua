@@ -51,7 +51,7 @@ local function render_battery(battery)
 
   local prefix = 'md_battery'
   if battery.state == 'Charging' then
-    return icons[prefix .. '_charging']
+    prefix = prefix .. '_charging'
   end
 
   local icon_name
@@ -63,11 +63,10 @@ local function render_battery(battery)
     icon_name = prefix .. '_' .. suffix
   end
 
-  local color = percent <= 0.1 and 'Red' or 'Green'
   return string.format(
     '%s%s',
     apply_fmt('Green', nil, tilde),
-    apply_fmt(color, 'Green', string.format(' %s%s ', icons[icon_name], formatted_percent))
+    apply_fmt('Black', 'Green', string.format(' %s ', icons[icon_name]))
   )
 end
 
