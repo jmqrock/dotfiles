@@ -1,6 +1,6 @@
 gui:
   nerdFontsVersion: '2'
-  splitDiff: 'always'
+  # splitDiff: 'always'
   sidePanelWidth: 0.2
 git:
   paging:
