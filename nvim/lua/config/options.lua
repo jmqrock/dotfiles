@@ -11,10 +11,13 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
-vim.g.copilot_proxy = "127.0.0.1:8234"
 
 vim.g.autoformat = false
 
 -- for indent-blankline
 vim.opt.list = true
 vim.opt.listchars:append("eol:↴")
+
+-- from theme gruvbox 
+vim.g.gruvbox_italic=1
+vim.g.gruvbox_transparent_bg=2

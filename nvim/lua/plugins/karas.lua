@@ -1,6 +1,8 @@
 return {
   -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
+  { "ellisonleao/gruvbox.nvim", opts = {
+    transparent_mode = true,
+  } },
 
   -- Configure LazyVim to load gruvbox
   {
@@ -11,12 +13,39 @@ return {
   },
 
   { "numToStr/Comment.nvim" },
+
   {
     "rcarriga/nvim-notify",
     opts = {
       render = "compact",
     },
   },
+
+  {
+    "NvChad/nvim-colorizer.lua",
+    lazy = true,
+    ft = {
+      "lua",
+      "html",
+      "vue",
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+      "svelte",
+      "css",
+    },
+    opts = function(self, opts)
+      return vim.tbl_deep_extend("force", opts, {
+        filetypes = self.ft,
+        user_default_options = {
+          RRGGBBAA = true,
+          tailwind = true,
+        },
+      })
+    end,
+  },
+
   {
     "telescope.nvim",
     dependencies = {
@@ -31,4 +60,26 @@ return {
       require("telescope").load_extension("live_grep_args")
     end,
   },
+  -- add more treesitter parsers
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "typescript",
+        "vim",
+        "yaml",
+        "vue",
+        "css",
+      },
+    },
+  },
+
 }
