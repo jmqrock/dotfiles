@@ -15,6 +15,11 @@ return {
   },
 
   {
+    "hinell/lsp-timeout.nvim",
+    dependencies = { "neovim/nvim-lspconfig" },
+  },
+
+  {
     "williamboman/mason.nvim",
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
@@ -60,12 +65,7 @@ return {
     opts = {},
   },
 
-  {
-    "hinell/lsp-timeout.nvim",
-    dependencies = { "neovim/nvim-lspconfig" },
-  },
   { import = "plugins.extras.lang.cspell" },
   { import = "plugins.extras.lang.vue" },
-  { import = "plugins.extras.lang.typescript" },
   { import = "plugins.extras.linting.eslint" },
 }

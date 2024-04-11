@@ -21,3 +21,5 @@ vim.opt.listchars:append("eol:↴")
 -- from theme gruvbox 
 vim.g.gruvbox_italic=1
 vim.g.gruvbox_transparent_bg=2
+vim.lsp.set_log_level("debug")
+print(vim.lsp)
