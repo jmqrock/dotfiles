@@ -3,16 +3,15 @@
 -- Add any additional keymaps here
 --
 --
-local function override_lsp_keymaps()
-  local keys = require("lazyvim.plugins.lsp.keymaps").get()
-  print(vim.inspect(keys))
-
-  -- for _, keymap in ipairs(keymaps or {}) do
-  --   keys[#keys + 1] = keymap
-  -- end
-end
-
-override_lsp_keymaps()
+-- local function override_lsp_keymaps()
+--   local keys = require("lazyvim.plugins.lsp.keymaps").get()
+--
+--   -- for _, keymap in ipairs(keymaps or {}) do
+--   --   keys[#keys + 1] = keymap
+--   -- end
+-- end
+--
+-- override_lsp_keymaps()
 
 vim.keymap.set({ "n", "x" }, "cp", '"+y', { nowait = true, noremap = true, desc = "copy selected to system clipboard" })
 

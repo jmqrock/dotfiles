@@ -112,6 +112,14 @@ local keys = {
     mods = mod.SUPER,
     action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
   },
+  {
+    key = 'k',
+    mods = mod.SUPER_ALT,
+    action = wezterm.action.SplitPane {
+      direction = 'Up',
+      size = { Percent = 50 },
+    },
+  },
 
   -- panes: zoom+close pane
   { key = 'z', mods = mod.SUPER_REV, action = act.TogglePaneZoomState },
