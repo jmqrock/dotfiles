@@ -1,0 +1,14 @@
+# My rules
+DOMAIN-SUFFIX,stackoverflow.com
+DOMAIN-SUFFIX,python.org
+DOMAIN-SUFFIX,tampermonkey.net
+DOMAIN-SUFFIX,tampermonkey.freetls.fastly.net
+DOMAIN-SUFFIX,kubernetes.io
+DOMAIN-SUFFIX,unistudent.upsi.edu.my
+DOMAIN-SUFFIX,deepl.com
+DOMAIN-SUFFIX,gravatar.com
+DOMAIN-SUFFIX,msftauth.net
+DOMAIN-SUFFIX,raycast.com
+DOMAIN-SUFFIX,brew.sh
+PROCESS-NAME,Code
+PROCESS-NAME,Code Helper
