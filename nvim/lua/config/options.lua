@@ -22,3 +22,6 @@ vim.opt.listchars:append("eol:↴")
 vim.g.gruvbox_italic=1
 vim.g.gruvbox_transparent_bg=2
 vim.lsp.set_log_level("debug")
+
+-- for JavaScript formatting
+vim.g.lazyvim_prettier_needs_config = true

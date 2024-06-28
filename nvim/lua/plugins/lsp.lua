@@ -64,8 +64,8 @@ return {
     cmd = { "TSC" },
     opts = {},
   },
-
   { import = "plugins.extras.lang.cspell" },
-  { import = "plugins.extras.lang.vue" },
-  { import = "plugins.extras.linting.eslint" },
+  -- { import = "plugins.extras.lang.vue" },
+  -- { import = "plugins.extras.linting.eslint" },
+
 }

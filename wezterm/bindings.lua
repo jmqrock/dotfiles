@@ -65,7 +65,7 @@ local keys = {
 
   -- window --
   -- spawn windows
-  { key = 'n', mods = mod.SUPER, action = act.SpawnWindow },
+  { key = 'n', mods = mod.SUPER_ALT, action = act.SpawnWindow },
 
   -- background controls --
   -- {
@@ -92,35 +92,31 @@ local keys = {
 
   -- panes --
   -- panes: split panes
-  {
-    key = [[\]],
-    mods = mod.SUPER,
-    action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
-  },
+  -- {
+  --   key = [[\]],
+  --   mods = mod.SUPER,
+  --   action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
+  -- },
+  -- {
+  --   key = [[\]],
+  --   mods = mod.SUPER_REV,
+  --   action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
+  -- },
   {
     key = 'Enter',
     mods = mod.SUPER_REV,
     action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
   },
   {
-    key = [[\]],
-    mods = mod.SUPER_REV,
-    action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
-  },
-  {
     key = 'Enter',
     mods = mod.SUPER,
     action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
   },
   {
-    key = 'k',
+    key = 'b',
     mods = mod.SUPER_ALT,
-    action = wezterm.action.SplitPane {
-      direction = 'Up',
-      size = { Percent = 50 },
-    },
+    action = act.RotatePanes 'CounterClockwise',
   },
-
   -- panes: zoom+close pane
   { key = 'z', mods = mod.SUPER_REV, action = act.TogglePaneZoomState },
   { key = 'w', mods = mod.SUPER, action = act.CloseCurrentPane({ confirm = true }) },

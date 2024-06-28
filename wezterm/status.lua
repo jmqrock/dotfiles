@@ -47,7 +47,7 @@ local function render_battery(battery)
   end
 
   local percent = battery.state_of_charge
-  local formatted_percent = string.format('%.0f%%', percent * 100)
+  -- local formatted_percent = string.format('%.0f%%', percent * 100)
 
   local prefix = 'md_battery'
   if battery.state == 'Charging' then

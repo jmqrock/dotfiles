@@ -20,6 +20,8 @@ local GLYPH_CIRCLE = icons['cod_eye']
 -- local GLYPH_CIRCLE = ''
 -- local GLYPH_CIRCLE = utf8.char(0xf111)
 local GLYPH_ADMIN = icons['fae_radioactive']
+local test_icon = icons['md_numeric_2_box_multiple_outline']
+
 -- local GLYPH_ADMIN = '󰞀'
 -- local GLYPH_ADMIN = utf8.char(0xf0780)
 
@@ -146,7 +148,10 @@ function M.apply(config)
     end
 
     local has_unseen_output = false
-    for _, pane in ipairs(tab.panes) do
+    local tab_panes = tab.panes
+    local paneCount = #tab_panes
+
+    for _, pane in ipairs(tab_panes) do
       if pane.has_unseen_output then
         has_unseen_output = true
         break
@@ -159,6 +164,17 @@ function M.apply(config)
     -- Admin Icon
     if is_admin then
       M.push(bg, fg, { Intensity = 'Normal' }, ' ' .. GLYPH_ADMIN)
+    end
+
+    if paneCount > 1 then
+      -- Left semi-circle
+      -- M.push(bg, { Color = 'Black' }, { Intensity = 'Bold' }, tostring(paneCount))
+      M.push(
+        bg,
+        { Color = 'Black' },
+        { Intensity = 'Bold' },
+        icons[string.format('md_numeric_%s_box_multiple_outline', paneCount)]
+      )
     end
 
     -- Title

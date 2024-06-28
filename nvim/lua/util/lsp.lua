@@ -1,6 +1,6 @@
 local M = {}
 
-M.timeout = 5000
+M.timeout = 10000
 
 return M
 

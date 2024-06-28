@@ -9,6 +9,9 @@ function M.apply(config)
     {
       family = 'Hack Nerd Font',
     },
+    {
+      family = 'Victor Mono',
+    },
     { family = 'Hannotate SC' },
   })
   -- config.font = wezterm.font(font)
