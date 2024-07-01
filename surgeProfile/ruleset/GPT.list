@@ -7,3 +7,4 @@ DOMAIN-SUFFIX,clarity.ms
 DOMAIN-SUFFIX,live.com
 DOMAIN-SUFFIX,*.google-analytics.com
 DOMAIN-SUFFIX,*.google.com
+PROCESS-NAME,/Applications/ChatGPT.app/Contents/MacOS/ChatGPT
