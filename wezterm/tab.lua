@@ -1,14 +1,15 @@
 -- local os = require('os')
 local wezterm = require('wezterm')
+local mux = wezterm.mux
 local utils = require('utils')
 local icons = wezterm.nerdfonts
 local M = {}
 
 -- This function is private to this module and is not visible
 -- outside.
-local function private_helper()
-  wezterm.log_info('load tab config!')
-end
+-- local function private_helper()
+--   wezterm.log_info('load tab config!')
+-- end
 
 local GLYPH_SEMI_CIRCLE_LEFT = icons['ple_lower_right_triangle']
 -- local GLYPH_SEMI_CIRCLE_LEFT = ''
@@ -127,7 +128,7 @@ function M.apply(config)
     return false
   end)
 
-  wezterm.on('format-tab-title', function(tab, _, _, _, hover, max_width)
+  wezterm.on('format-tab-title', function(tab, _, panes, _, hover, max_width)
     M.cells = {}
 
     local bg
@@ -148,13 +149,12 @@ function M.apply(config)
     end
 
     local has_unseen_output = false
-    local tab_panes = tab.panes
-    local paneCount = #tab_panes
+    local mux_tab = mux.get_tab(tab.tab_id)
+    local paneCount = #mux_tab:panes()
 
-    for _, pane in ipairs(tab_panes) do
+    for _, pane in ipairs(panes) do
       if pane.has_unseen_output then
         has_unseen_output = true
-        break
       end
     end
 
