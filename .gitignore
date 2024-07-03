@@ -21,3 +21,5 @@ nvim/lazy-lock.json
 nvim/lazyvim.json
 surgeProfile/socloud.conf
 surgeProfile/tag.conf
+zed/.*
+zed/**/*mdb
