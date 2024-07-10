@@ -21,7 +21,6 @@ local GLYPH_CIRCLE = icons['cod_eye']
 -- local GLYPH_CIRCLE = ''
 -- local GLYPH_CIRCLE = utf8.char(0xf111)
 local GLYPH_ADMIN = icons['fae_radioactive']
-local test_icon = icons['md_numeric_2_box_multiple_outline']
 
 -- local GLYPH_ADMIN = '󰞀'
 -- local GLYPH_ADMIN = utf8.char(0xf0780)
@@ -128,7 +127,7 @@ function M.apply(config)
     return false
   end)
 
-  wezterm.on('format-tab-title', function(tab, _, panes, _, hover, max_width)
+  wezterm.on('format-tab-title', function(tab, _, _, _, hover, max_width)
     M.cells = {}
 
     local bg
@@ -150,7 +149,8 @@ function M.apply(config)
 
     local has_unseen_output = false
     local mux_tab = mux.get_tab(tab.tab_id)
-    local paneCount = #mux_tab:panes()
+    local panes = mux_tab:panes()
+    local paneCount = #panes
 
     for _, pane in ipairs(panes) do
       if pane.has_unseen_output then
@@ -169,21 +169,17 @@ function M.apply(config)
     if paneCount > 1 then
       -- Left semi-circle
       -- M.push(bg, { Color = 'Black' }, { Intensity = 'Bold' }, tostring(paneCount))
-      M.push(
-        bg,
-        { Color = 'Black' },
-        { Intensity = 'Bold' },
-        icons[string.format('md_numeric_%s_box_multiple_outline', paneCount)]
-      )
+      local starter_icon = icons[string.format('md_numeric_%s_box_multiple_outline', paneCount)]
+      if has_unseen_output then
+        starter_icon = icons[string.format('md_numeric_%s_box_multiple', paneCount)]
+      end
+      M.push(bg, { Color = 'Black' }, { Intensity = 'Bold' }, starter_icon)
+    else
+      M.push(bg, { Color = 'Black' }, { Intensity = 'Bold' }, GLYPH_CIRCLE)
     end
 
     -- Title
     M.push(bg, { Color = 'Black' }, { Intensity = 'Bold' }, ' ' .. title)
-
-    -- Unseen output alert
-    if has_unseen_output then
-      M.push(bg, { Color = 'White' }, { Intensity = 'Normal' }, ' ' .. GLYPH_CIRCLE)
-    end
 
     -- Right padding
     M.push(bg, fg, { Intensity = 'Bold' }, ' ')

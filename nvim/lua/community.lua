@@ -6,7 +6,9 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.python-ruff" },
+  { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.completion.copilot-cmp" },
   { import = "astrocommunity/colorscheme/gruvbox-nvim" },
 }
