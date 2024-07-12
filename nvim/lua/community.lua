@@ -10,5 +10,5 @@ return {
   { import = "astrocommunity.pack.python-ruff" },
   { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.completion.copilot-cmp" },
-  { import = "astrocommunity/colorscheme/gruvbox-nvim" },
+  { import = "astrocommunity/colorscheme/gruvbox-baby" },
 }
