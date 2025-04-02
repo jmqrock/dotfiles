@@ -20,6 +20,8 @@ fonts_conf.apply(config)
 key_bind_conf.apply(config)
 right_status.apply(config)
 
+-- Spawn a fish shell in login mode
+-- config.default_prog = { '/opt/homebrew/bin/nu' }
 config.enable_scroll_bar = true
 config.animation_fps = 60
 config.max_fps = 60

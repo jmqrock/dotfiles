@@ -138,7 +138,7 @@ alt-v = 'workspace V'
 alt-w = 'workspace W'
 alt-x = 'workspace X'
 alt-y = 'workspace Y'
-alt-z = 'workspace Z'
+# alt-z = 'workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -194,5 +194,5 @@ backspace = ['close-all-windows-but-current', 'mode main']
 
 alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+alt-shift-k = ['join-with up', 'mode main']
