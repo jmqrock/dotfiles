@@ -15,6 +15,7 @@ vim.g.loaded_perl_provider = 0
 -- for indent-blankline
 vim.opt.list = true
 vim.opt.listchars:append("eol:↴")
+vim.opt.laststatus = 3
 
 -- from theme gruvbox
 -- vim.g.gruvbox_italic = 1

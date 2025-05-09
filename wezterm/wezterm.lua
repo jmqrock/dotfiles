@@ -31,7 +31,7 @@ config.webgpu_power_preference = 'HighPerformance'
 config.color_scheme = 'darkmoss (base16)'
 config.automatically_reload_config = false
 
-config.window_background_opacity = 0.92
+config.window_background_opacity = 0.98
 -- config.text_background_opacity = 0.3
 
 -- window
